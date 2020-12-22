@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Get Date</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            background-color: rgb(192, 207, 205);
+            color: rgb(87, 62, 30)
+        }
+        input{
+            width: 10%;
+            padding: 5px 5px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 3px solid rgb(209, 211, 199);
+        }
+        h2{
+            text-align: center
+        }
+        p{
+            text-align: center;
+            font-family: cursive;
+            font-style: italic;
+        }
+        .header{
+            padding: 60px;
+            text-align: center;
+            background-color: rgb(152, 168, 145);
+            color: rgb(53, 37, 17);
+            font-size: 20px;
+        }
+
+        .logoutbtn {
+            background-color: rgba(12, 32, 12, 0.856);
+            color: white;
+            padding: 10px 40px;
+            margin: 8px 8px;
+            border: none;
+            cursor: pointer;
+            opacity: 0.9;
+        }
+        
+    </style>
+</head>
+<body>
+    <div>
+        <form action="/logout?_method=DELETE" method="POST">
+            <button type="submit" class="logoutbtn">Log Out</button>
+        </form>
+    </div>
+    <div class="header">
+        <h1>Welcome To The 2020 Weekly-Quotes</h1>
+        <p>Enter a date (1-31) and a month (1-12) to display that weeks selected quote.</p>
+        <form action="/date" method="POST" onsubmit="return checkInput()">
+            <label for="day">Date</label>
+            <input type="number" id="date" name="date" min="1" max="31">
+            <label for="month">Month</label>
+            <input type="number" id="month" name="month" min="1" max="12">
+            <input type="submit" id="submit" value="ENTER">
+        </form>
+    </div>
+
+    <div>
+        <% visitedQuotes.forEach(function(quote) { %>
+            </br><h2><%= quote.week %></h2>
+            <p> "<%= quote.quote %> "</p>
+        <% }); %>
+    </div>
+
+    <script type="text/javascript">
+        function checkInput(){
+            var date = document.getElementById('date').value;
+            var month = document.getElementById('month').value;
+            console.log(date);
+            console.log(month);
+            if ((date.length == 0) && (month.length == 0)){
+                alert("Please enter a correct day or month");
+            } else {
+                return true;
+            }
+        }
+    </script>
+        
+</body>
+</html>
