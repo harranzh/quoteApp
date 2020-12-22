@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
@@ -27,7 +28,7 @@ const dateLimiter = rateLimit({
 });
 
 // Mongoose Connection
-mongoose.connect('mongodb://localhost:27017/WeeklyQuotes', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify : true }, 
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/WeeklyQuotes', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify : true }, 
     console.log('Mongo Connection OPEN'));
 
 // config
